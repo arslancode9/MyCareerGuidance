@@ -1,0 +1,19 @@
+<svg width="511" height="719" viewBox="0 0 511 719" fill="none" xmlns="http://www.w3.org/2000/svg">
+<foreignObject x="-535" y="-10" width="1056" height="1055.69"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(5px);height:100%;width:100%"></div></foreignObject><path data-figma-bg-blur-radius="10" d="M-7 40C257.003 40 471 253.949 471 517.844C471 781.738 257.003 995.688 -7 995.688C-271.003 995.688 -485 781.738 -485 517.844C-485 253.949 -271.003 40 -7 40Z" stroke="url(#paint0_radial_0_1)" stroke-opacity="0.7" stroke-width="80"/>
+<foreignObject x="-436.433" y="86.4406" width="858.866" height="858.613"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(5px);height:100%;width:100%"></div></foreignObject><path data-figma-bg-blur-radius="10" d="M-6.99976 126.441C208.087 126.441 382.433 300.748 382.433 515.747C382.433 730.747 208.087 905.054 -6.99976 905.054C-222.086 905.054 -396.433 730.747 -396.433 515.747C-396.433 300.748 -222.086 126.441 -6.99976 126.441Z" stroke="url(#paint1_radial_0_1)" stroke-opacity="0.65" stroke-width="60"/>
+<path d="M-6.99963 220.3C156.237 220.3 288.546 352.587 288.546 515.745C288.546 678.904 156.237 811.19 -6.99963 811.19C-170.237 811.19 -302.546 678.904 -302.547 515.745C-302.547 352.587 -170.237 220.3 -6.99963 220.3Z" stroke="url(#paint2_radial_0_1)" stroke-opacity="0.81" stroke-width="80"/>
+<defs>
+<radialGradient id="paint0_radial_0_1" cx="0" cy="0" r="1" gradientTransform="matrix(14.5687 689.379 -689.587 14.5644 -21.5688 540.499)" gradientUnits="userSpaceOnUse">
+<stop offset="0.654764" stop-color="#E2F6FC" stop-opacity="0.36"/>
+<stop offset="1" stop-color="#48B7D6" stop-opacity="0.84"/>
+</radialGradient>
+<radialGradient id="paint1_radial_0_1" cx="0" cy="0" r="1" gradientTransform="matrix(11.7966 558.202 -558.37 11.793 -18.7967 534.092)" gradientUnits="userSpaceOnUse">
+<stop offset="0.654764" stop-color="#E2F6FC" stop-opacity="0.36"/>
+<stop offset="1" stop-color="#48B7D6" stop-opacity="0.84"/>
+</radialGradient>
+<radialGradient id="paint2_radial_0_1" cx="0" cy="0" r="1" gradientTransform="matrix(9.43725 446.561 -446.696 9.4344 -16.4372 530.421)" gradientUnits="userSpaceOnUse">
+<stop offset="0.654764" stop-color="#E2F6FC" stop-opacity="0.36"/>
+<stop offset="1" stop-color="#48B7D6" stop-opacity="0"/>
+</radialGradient>
+</defs>
+</svg>
