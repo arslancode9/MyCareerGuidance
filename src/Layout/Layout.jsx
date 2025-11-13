@@ -8,7 +8,7 @@ const DashBoard = () => {
       <Header />
       <div className="flex flex-1">
         <AsideNavbar />
-        <main className="flex-1 p-6 ml-40  bg-white">
+          <main className="flex-1 p-4 md:p-6 md:ml-40 bg-white">
           <Outlet />
         </main>
       </div>

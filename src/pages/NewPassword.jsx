@@ -6,7 +6,7 @@ const NewPassword = () => {
   const [showConfirm, setShowConfirm] = useState(false);
 
   return (
-    <div className="w-full min-h-screen flex flex-col lg:grid lg:grid-cols-2 items-center justify-center px-5 sm:px-10 lg:px-20">
+    <div className="w-full min-h-screen flex flex-col lg:grid lg:grid-cols-2 items-center justify-center px-5 sm:px-30 md:px-50 lg:px-20">
       {/* Left Side */}
       <div className="flex flex-col items-start w-full">
         {/* Logo Section */}

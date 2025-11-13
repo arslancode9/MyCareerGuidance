@@ -67,15 +67,18 @@ export default function MyStudy() {
   };
 
   return (
-    <div className="min-h-screen bg-white p-3 sm:p-6 ml-12 mt-24">
+    <div className="min-h-screen bg-white p-3 sm:p-6 sm:mt-43 md:p-10 md:mt-23  lg:ml-12 lg:mt-24 transition-all">
       <div className="max-w-[1400px] mx-auto relative">
+        
         {/* Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 sm:mb-6">
-          <h1 className="text-xl sm:text-2xl font-medium text-gray-800">Schedule Management</h1>
-          <div className="flex gap-2 sm:gap-3 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6">
+          <h1 className="text-xl sm:text-2xl font-semibold text-gray-800">
+            Schedule Management
+          </h1>
+          <div className="flex flex-wrap gap-2 sm:gap-3 w-full sm:w-auto">
             <button
               onClick={() => setShowModal(true)}
-              className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-blue-500 text-white text-sm rounded-lg hover:bg-blue-600 flex items-center justify-center gap-2"
+              className="flex-1 sm:flex-none px-4 py-2 bg-blue-500 text-white text-sm rounded-lg hover:bg-blue-600 flex items-center justify-center gap-2"
             >
               <Plus size={16} />
               <span className="hidden sm:inline">Add Event</span>
@@ -83,14 +86,14 @@ export default function MyStudy() {
             </button>
             <button
               onClick={handleReset}
-              className="px-3 sm:px-4 py-2 border border-blue-500 text-blue-500 text-sm rounded-lg hover:bg-blue-50"
+              className="flex-1 sm:flex-none px-4 py-2 border border-blue-500 text-blue-500 text-sm rounded-lg hover:bg-blue-50"
             >
               Reset
             </button>
           </div>
         </div>
 
-        {/* Calendar Grid */}
+        {/* Calendar (Desktop View) */}
         <div className="hidden lg:block bg-white rounded-xl border border-gray-200 overflow-hidden">
           <div className="grid grid-cols-8">
             <div className="p-3 bg-gray-50 flex items-center justify-center border-b border-r border-gray-200">
@@ -147,12 +150,49 @@ export default function MyStudy() {
           </div>
         </div>
 
+        {/* Mobile View (List Layout) */}
+        <div className="block lg:hidden mt-4">
+          <div className="flex flex-col gap-3">
+            {events.length === 0 ? (
+              <p className="text-gray-400 text-center py-6">No events added yet.</p>
+            ) : (
+              events.map(event => (
+                <div key={event.id} className="p-4 border rounded-xl bg-blue-50 border-blue-200 flex flex-col gap-2">
+                  <div className="flex justify-between items-start">
+                    <h3 className="font-semibold text-gray-800">{event.title}</h3>
+                    <button onClick={() => handleDeleteEvent(event.id)}>
+                      <X size={16} className="text-gray-500 hover:text-red-500" />
+                    </button>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="text-xs text-gray-600">
+                      📅 {days[event.day]}
+                    </span>
+                    <span className="text-xs text-gray-600">
+                      ⏰ {formatTime(event.startTime)} - {formatTime(event.endTime)}
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap gap-1 mt-1">
+                    {event.tags.map((tag, i) => (
+                      <span key={i} className={`inline-block px-2 py-0.5 ${tag.color} text-white text-xs rounded`}>
+                        {tag.text}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+
         {/* Add Event Modal */}
         {showModal && (
-          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-lg p-4 sm:p-6 w-full max-w-md max-h-[90vh] overflow-y-auto shadow-lg">
+          <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-lg p-4 sm:p-6 w-full max-w-md max-h-[90vh] overflow-y-auto shadow-xl">
               <h2 className="text-lg sm:text-xl font-semibold mb-4">Add New Event</h2>
+              
               <div className="space-y-4">
+                {/* Title */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Event Title</label>
                   <input
@@ -164,6 +204,7 @@ export default function MyStudy() {
                   />
                 </div>
 
+                {/* Tags */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Tags</label>
                   <div className="flex gap-2 mb-2">
@@ -194,6 +235,7 @@ export default function MyStudy() {
                   </div>
                 </div>
 
+                {/* Day Selection */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Day</label>
                   <select
@@ -207,6 +249,7 @@ export default function MyStudy() {
                   </select>
                 </div>
 
+                {/* Time Select */}
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Start Time</label>
@@ -235,7 +278,8 @@ export default function MyStudy() {
                 </div>
               </div>
 
-              <div className="flex gap-3 mt-6">
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 mt-6">
                 <button
                   onClick={handleAddEvent}
                   className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm"
@@ -256,7 +300,8 @@ export default function MyStudy() {
             </div>
           </div>
         )}
+
       </div>
     </div>
   );
-}  
+}

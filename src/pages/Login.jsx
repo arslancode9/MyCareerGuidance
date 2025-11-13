@@ -39,7 +39,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col lg:grid lg:grid-cols-2 items-center justify-center px-4 sm:px-10 lg:px-20 xl:px-32 bg-white">
+    <div className="w-full min-h-screen flex flex-col lg:grid lg:grid-cols-2 items-center justify-center px-4 sm:px-30 md:px-50 lg:px-20 xl:px-32 bg-white">
       {/* Left Section */}
       <div className="flex flex-col items-start w-full">
         {/* Logo */}
