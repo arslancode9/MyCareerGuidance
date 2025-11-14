@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { LogOut } from "lucide-react";
 import img1 from "/Overveiw.svg";
 import img2 from "/cadcalculat.svg";
 import img3 from "/MyGoal.svg";
@@ -43,7 +44,11 @@ const AsideNavbar = () => {
             )}
           </NavLink>
         ))}
-        <img src="Aside.svg" alt="" className="mt-7"/>
+        <img src="Aside.svg" alt="" className="mt-3 w-36 h-36"/>
+        <button className="flex items-center justify-center gap-2 bg-[#1476B7] text-white py-2 rounded-md hover:bg-[#0f5e96] transition-all mt-4 cursor-pointer">
+              <LogOut size={16} />
+              Logout
+            </button>
       </nav>
     </aside>
   );

@@ -27,9 +27,9 @@ export default function CadCalculator() {
   const levels = ['Higher', 'Ordinary', 'Foundation'];
 
   const getGradesForLevel = (level) => {
-    if (level === 'Higher') return ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8'];
-    if (level === 'Ordinary') return ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'];
-    if (level === 'Foundation') return ['F1', 'F2', 'F3', 'F4', 'F5', 'F6'];
+    if (level === 'Higher') return ['H1','H2','H3','H4','H5','H6','H7','H8'];
+    if (level === 'Ordinary') return ['O1','O2','O3','O4','O5','O6','O7','O8'];
+    if (level === 'Foundation') return ['F1','F2','F3','F4','F5','F6'];
     return [];
   };
 
@@ -89,7 +89,7 @@ export default function CadCalculator() {
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6 mt-16 lg:mt-20 lg:ml-23">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
+
         {/* LEFT SECTION */}
         <div className="lg:col-span-2">
           <div>
@@ -211,13 +211,13 @@ export default function CadCalculator() {
         </div>
 
         {/* RIGHT SECTION */}
-        <div className="lg:col-span-1 mt-8 lg:mt-24">
-          <div className="bg-liner-to-b from-white to-blue-50 rounded-2xl shadow-sm p-6 sticky top-24">
+        <div className="lg:col-span-1 mt-8 lg:mt-0">
+          <div className="bg-liner-to-b from-white to-blue-50 rounded-2xl shadow-sm p-6 lg:sticky lg:top-24">
             <h2 className="text-xl font-bold text-gray-800 mb-6 text-center">My Expected Points</h2>
 
             {/* Circle */}
             <div className="relative w-48 h-48 sm:w-64 sm:h-64 mx-auto mb-6">
-              <svg className="w-full h-full transform -rotate-90">
+              <svg className="w-full h-full transform -rotate-90" viewBox="0 0 256 256">
                 <circle cx="128" cy="128" r="110" stroke="#E5E7EB" strokeWidth="20" fill="none" />
                 <circle
                   cx="128"
@@ -226,8 +226,8 @@ export default function CadCalculator() {
                   stroke="#3B82F6"
                   strokeWidth="20"
                   fill="none"
-                  strokeDasharray={`${2 * Math.PI * 110}`}
-                  strokeDashoffset={`${2 * Math.PI * 110 * (1 - percentage / 100)}`}
+                  strokeDasharray={2 * Math.PI * 110}
+                  strokeDashoffset={2 * Math.PI * 110 * (1 - percentage / 100)}
                   strokeLinecap="round"
                   className="transition-all duration-1000 ease-out"
                 />

@@ -106,39 +106,47 @@ export default function CoverLetter() {
     if (currentStep > 1) setCurrentStep(currentStep - 1);
   };
 
-  const renderStepIndicator = () => (
-    <div className="flex items-center justify-between mb-8  pt-3">
-      {steps.map((step, index) => (
-        <React.Fragment key={step.number}>
-          <div className="flex items-center justify-center gap-3">
-            <button
-              onClick={() => setCurrentStep(step.number)}
-              className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all hover:scale-110 ${
-                currentStep === step.number 
-                  ? 'bg-blue-500 text-white' 
+ const renderStepIndicator = () => (
+  <div className="flex flex-col md:flex-row items-center justify-center md:justify-between mb-8 pt-3 w-full gap-4">
+    {steps.map((step, index) => (
+      <React.Fragment key={step.number}>
+        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-3">
+          <button
+            onClick={() => setCurrentStep(step.number)}
+            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-200 hover:scale-110
+              ${
+                currentStep === step.number
+                  ? 'bg-blue-600 text-white shadow-md'
                   : currentStep > step.number
-                  ? 'bg-blue-500 text-white'
+                  ? 'bg-blue-500 text-white shadow-sm'
                   : 'bg-gray-200 text-gray-500 hover:bg-gray-300'
               }`}
-            >
-              {currentStep > step.number ? <Check size={18} /> : step.icon}
-            </button>
-            <span className={`text-xs font-medium text-center ${
-              currentStep >= step.number ? 'text-gray-700' : 'text-gray-400'
-            }`}>
-              {step.name}
-            </span>
-          </div>
-          {index < steps.length - 1 && (
-            <div className={`flex-1 h-0.5 mx-2 ${
-              currentStep > step.number ? 'bg-blue-500' : 'bg-gray-300'
-            }`} style={{ minWidth: '30px' }} />
-          )}
-        </React.Fragment>
-      ))}
-    </div>
-  );
+          >
+            {currentStep > step.number ? <Check size={18} /> : step.icon}
+          </button>
 
+          <span
+            className={`text-[11px] sm:text-xs font-medium text-center md:text-left leading-tight
+              ${currentStep >= step.number ? 'text-gray-800' : 'text-gray-400'}
+            `}
+          >
+            {step.name}
+          </span>
+        </div>
+
+        {/* Connector line */}
+        {index < steps.length - 1 && (
+          <div
+            className={`hidden md:block flex-1 h-0.5 mx-2 ${
+              currentStep > step.number ? 'bg-blue-500' : 'bg-gray-300'
+            }`}
+            style={{ minWidth: '40px' }}
+          />
+        )}
+      </React.Fragment>
+    ))}
+  </div>
+);
   const renderPersonalProfile = () => (
     <div className="space-y-6">
       <div>
@@ -606,7 +614,7 @@ export default function CoverLetter() {
   };
 
   return (
-    <div className="min-h-screen ml-20 mt-20 p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen mt-20 p-4 sm:w-full lg:p-8">
         <div className="mb-8">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
               <div>

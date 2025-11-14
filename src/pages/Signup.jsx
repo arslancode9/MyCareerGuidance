@@ -67,7 +67,7 @@ const Signup = () => {
             </h1>
           </div>
           {/* Mobile Login/Signup */}
-          <div className="flex items-center gap-1 px-4 py-2 lg:hidden text-white border border-[#1476B7] bg-[#1476B7] rounded-lg text-sm sm:text-base">
+          <div className="flex items-center gap-1 px-4 py-2 lg:hidden text-white border border-[#1476B7] bg-[#1476B7] rounded-lg text-sm sm:text-base sm:mr-12">
             <Link to="/login">Login</Link>/<Link to="/signup">Signup</Link>
           </div>
         </div>

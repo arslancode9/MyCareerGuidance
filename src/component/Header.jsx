@@ -82,15 +82,19 @@ const Header = () => {
 
             {/* Mobile Profile Card */}
             <div className="flex items-center gap-3 border-t border-gray-200 pt-4 mt-2">
+               <div className="w-full bg-[#1476B7] flex items-center justify-between gap-3 p-3  rounded-lg text-white">
+            <div className="flex gap-14">
               <img
-                src="/profile.jpg"
-                alt=""
-                className="w-10 h-10 rounded-md object-cover border border-gray-300"
-              />
-              <div className="leading-tight text-sm">
-                <h3 className="font-semibold">Bruno Fernandes</h3>
-                <p className="text-gray-500 text-xs">bruno@gmail.com</p>
-              </div>
+              src="/profile.jpg"
+              alt=""
+              className="w-10 h-10 rounded-md object-cover border border-white/30"
+            />
+            <div className="leading-tight">
+              <h3 className="font-semibold text-sm">Bruno Fernandes</h3>
+              <p className="text-xs opacity-90 truncate">bruno@gmail.com</p>
+            </div>
+            </div>
+          </div>
             </div>
           </div>
         </div>
