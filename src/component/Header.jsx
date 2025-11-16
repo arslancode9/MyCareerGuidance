@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink ,Link } from "react-router-dom";
 import { Menu, X, LogOut } from "lucide-react";
 
 const Header = () => {
@@ -75,10 +75,10 @@ const Header = () => {
                 {link.label}
               </NavLink>
             ))}
-            <button className="flex items-center justify-center gap-2 bg-[#1476B7] text-white py-2 rounded-md hover:bg-[#0f5e96] transition-all">
+            <Link to='/signup' className="flex items-center justify-center gap-2 bg-[#1476B7] text-white py-2 rounded-md hover:bg-[#0f5e96] transition-all mt-4 cursor-pointer">
               <LogOut size={16} />
               Logout
-            </button>
+        </Link>
 
             {/* Mobile Profile Card */}
             <div className="flex items-center gap-3 border-t border-gray-200 pt-4 mt-2">

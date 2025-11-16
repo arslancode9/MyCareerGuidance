@@ -15,6 +15,8 @@ import img18 from "/quiz.svg";
 
 const Overview = () => {
   const [showall, setShowAll] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
   const quizzes = [
     { id: 1, title: "Quiz 01", desc: "Lorem ipsum is a place" },
     { id: 2, title: "Quiz 02", desc: "Lorem ipsum is a place" },
@@ -24,17 +26,68 @@ const Overview = () => {
     { id: 6, title: "Quiz 06", desc: "Lorem ipsum is a place" },
   ];
 
+  const cards = [
+    {
+      title: "CAO Point Calculator",
+      desc: "Final score is displayed",
+      img1: img14,
+      bg: "#8AC53E",
+      link: "/dashboard/cadcalculator",
+    },
+    {
+      title: "My Goals",
+      desc: "Increases chance of success",
+      img1: img13,
+      img2: img12,
+      bg: "#ADBEC4",
+      link: "/dashboard/mygoal",
+    },
+    {
+      title: "My Study",
+      desc: "Number of preset questions",
+      img1: img10,
+      img2: img9,
+      bg: "#73BDC0",
+      link: "/dashboard/mystudy",
+    },
+    {
+      title: "My CV",
+      desc: "Different text formatting",
+      img1: img11,
+      bg: "#FFD143",
+      link: "/dashboard/coverlatter",
+    },
+    {
+      title: "My Self Assessment",
+      desc: "Career Tutorial Video and Quizzes",
+      img1: img15,
+      img2: img16,
+      bg: "#8EB2F4",
+      link: "/dashboard/selfassestaint",
+    },
+    {
+      title: "My Educational Guidance",
+      desc: "Give your Quizzes",
+      img1: img17,
+      bg: "#E088EF",
+      link: "/dashboard/educationalguidance",
+    },
+  ];
+
+  const filteredCards = cards.filter((card) =>
+    card.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const visibleQuizzes = showall ? quizzes : quizzes.slice(0, 2);
 
   return (
-    <div className="z-0 mt-30 md:ml-20  flex flex-col lg:flex-row p-3 md:p-5 sm:pt-13">
+    <div className="z-0 mt-30 md:ml-20 flex flex-col lg:flex-row p-3 md:p-5 sm:pt-13">
       {/* LEFT SIDE */}
       <div className="w-full lg:w-[70%] flex flex-col pr-0 lg:pr-4">
         {/* Header Row */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <h1 className="text-[22px] md:text-[24px] font-semibold">
-            Career Guidance
-          </h1>
+          <h1 className="text-[22px] md:text-[24px] font-semibold">Career Guidance</h1>
+
           <div className="relative w-full sm:w-auto">
             <img
               src={img8}
@@ -44,98 +97,39 @@ const Overview = () => {
             <input
               type="text"
               placeholder="Search..."
-              className="pl-12 pr-4 py-2  focus:outline-none rounded-md w-full sm:w-48 placeholder:text-gray-400"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-12 pr-4 py-2 focus:outline-none rounded-md w-full sm:w-48 placeholder:text-gray-400"
             />
           </div>
         </div>
 
         {/* 6 Boxes Section */}
         <div className="w-full flex flex-wrap gap-5 mt-8">
-          {/* Card Template */}
-          <Link to="/dashboard/cadcalculator" className="w-full sm:w-[48%]">
-            <div className="bg-[#8AC53E] h-[200px] rounded-3xl relative overflow-hidden">
-              <img src={img14} alt="" className="absolute left-0 top-0" />
-              <div className="flex flex-col ml-6 pt-4">
-                <h1 className="font-semibold text-[24px] text-white">
-                  CAO Point Calculator
-                </h1>
-                <p className="text-white">Final score is displayed</p>
+          {filteredCards.map((card, index) => (
+            <Link key={index} to={card.link} className="w-full sm:w-[48%]">
+              <div
+                className="h-[200px] rounded-3xl relative overflow-hidden"
+                style={{ backgroundColor: card.bg }}
+              >
+                {card.img1 && (
+                  <img src={card.img1} alt="" className="absolute left-0 top-0" />
+                )}
+                {card.img2 && (
+                  <img src={card.img2} alt="" className="absolute right-0 bottom-0" />
+                )}
+                <div className="absolute inset-0 flex flex-col ml-6 pt-4">
+                  <h1 className="font-semibold text-[24px] text-white">{card.title}</h1>
+                  <p className="text-white">{card.desc}</p>
+                </div>
               </div>
-            </div>
-          </Link>
-
-          <Link to="/dashboard/mygoal" className="w-full sm:w-[48%]">
-            <div className="bg-[#ADBEC4] h-[200px] rounded-3xl relative overflow-hidden">
-              <img src={img13} alt="" className="absolute left-0 top-0" />
-              <img src={img12} alt="" className="absolute right-0 bottom-0" />
-              <div className="absolute inset-0 flex flex-col ml-6 pt-4">
-                <h1 className="font-semibold text-[24px] text-white">
-                  My Goals
-                </h1>
-                <p className="text-white">Increases chance of success</p>
-              </div>
-            </div>
-          </Link>
-
-          <Link to="/dashboard/mystudy" className="w-full sm:w-[48%]">
-            <div className="bg-[#73BDC0] h-[200px] rounded-3xl relative overflow-hidden">
-              <img src={img10} alt="" className="absolute left-0 top-0" />
-              <img src={img9} alt="" className="absolute right-0 bottom-0" />
-              <div className="absolute inset-0 flex flex-col ml-6 pt-4">
-                <h1 className="font-semibold text-[24px] text-white">
-                  My Study
-                </h1>
-                <p className="text-white">Number of preset questions</p>
-              </div>
-            </div>
-          </Link>
-
-          <Link to="/dashboard/coverlatter" className="w-full sm:w-[48%]">
-            <div className="bg-[#FFD143] h-[200px] rounded-3xl relative overflow-hidden">
-              <img src={img11} alt="" className="absolute right-5 bottom-0" />
-              <div className="absolute inset-0 flex flex-col ml-6 pt-4">
-                <h1 className="font-semibold text-[24px] text-white">My CV</h1>
-                <p className="text-white">Different text formatting</p>
-              </div>
-            </div>
-          </Link>
-
-          <Link to="/dashboard/selfassestaint" className="w-full sm:w-[48%]">
-            <div className="bg-[#8EB2F4] h-[200px] rounded-3xl relative overflow-hidden">
-              <img src={img15} alt="" className="absolute right-0 bottom-0" />
-              <img src={img16} alt="" className="absolute right-4 bottom-0" />
-              <div className="absolute inset-0 flex flex-col ml-6 pt-4">
-                <h1 className="font-semibold text-[24px] text-white">
-                  My Self Assessment
-                </h1>
-                <p className="text-white">
-                  Career Tutorial Video and Quizzes
-                </p>
-              </div>
-            </div>
-          </Link>
-
-          <Link to="/dashboard/educationalguidance" className="w-full sm:w-[48%]">
-            <div className="bg-[#E088EF] h-[200px] rounded-3xl relative overflow-hidden">
-              <img src={img17} alt="" className="absolute right-0 bottom-0" />
-              <div className="absolute inset-0 flex flex-col ml-6 pt-4 leading-tight">
-                <h1 className="font-semibold text-[24px] text-white m-0">
-                  My Educational
-                </h1>
-                <h1 className="font-semibold text-[24px] text-white m-0">
-                  Guidance
-                </h1>
-                <p className="text-white mt-1">Give your Quizzes'</p>
-              </div>
-            </div>
-          </Link>
+            </Link>
+          ))}
         </div>
 
         {/* Educational Guidance Quizzes */}
         <div className="flex flex-col sm:flex-row items-center justify-between mt-8 gap-4">
-          <h1 className="text-[22px] font-semibold">
-            My Educational Guidance
-          </h1>
+          <h1 className="text-[22px] font-semibold">My Educational Guidance</h1>
           <button
             onClick={() => setShowAll(!showall)}
             className="flex items-center justify-center gap-2 text-[#1476B7] hover:underline"
@@ -146,10 +140,7 @@ const Overview = () => {
 
         <div className="flex flex-wrap gap-4 mt-6">
           {visibleQuizzes.map((quiz) => (
-            <div
-              key={quiz.id}
-              className="bg-[#F7F7F7] rounded-3xl w-full sm:w-[48%]"
-            >
+            <div key={quiz.id} className="bg-[#F7F7F7] rounded-3xl w-full sm:w-[48%]">
               <div className="flex items-center justify-between p-5">
                 <div className="w-14 h-14 bg-[#D0E5F9] flex items-center justify-center rounded-xl">
                   <img src={img18} alt="" />
@@ -158,9 +149,7 @@ const Overview = () => {
                   <h1 className="font-semibold">{quiz.title}</h1>
                   <span className="text-[#BDBDBD]">{quiz.desc}</span>
                 </div>
-                <button className="bg-[#1476B7] h-8 px-3 rounded-md text-white">
-                  Take Test
-                </button>
+                <button className="bg-[#1476B7] h-8 px-3 rounded-md text-white">Take Test</button>
               </div>
             </div>
           ))}
@@ -169,19 +158,12 @@ const Overview = () => {
 
       {/* RIGHT SIDE */}
       <div className="w-full lg:w-[30%] mt-10 lg:mt-0 pr-0 lg:pr-4 rounded-lg">
-        <h2 className="text-[22px] md:text-[24px] font-semibold mb-4">
-          Psychometric Tests
-        </h2>
+        <h2 className="text-[22px] md:text-[24px] font-semibold mb-4">Psychometric Tests</h2>
         <div className="w-full p-2 space-y-6">
           {[1, 2, 3].map((item) => (
-            <div
-              key={item}
-              className="border border-gray-200 rounded-md flex items-center justify-between w-full p-4"
-            >
+            <div key={item} className="border border-gray-200 rounded-md flex items-center justify-between w-full p-4">
               <span>Occupational Interests</span>
-              <button className="bg-[#1476B7] py-2 px-4 rounded-md text-white">
-                Take Test
-              </button>
+              <button className="bg-[#1476B7] py-2 px-4 rounded-md text-white">Take Test</button>
             </div>
           ))}
         </div>

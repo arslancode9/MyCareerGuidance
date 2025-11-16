@@ -211,7 +211,7 @@ export default function CadCalculator() {
         </div>
 
         {/* RIGHT SECTION */}
-        <div className="lg:col-span-1 mt-8 lg:mt-0">
+        <div className="lg:col-span-1 mt-8 lg:mt-23">
           <div className="bg-liner-to-b from-white to-blue-50 rounded-2xl shadow-sm p-6 lg:sticky lg:top-24">
             <h2 className="text-xl font-bold text-gray-800 mb-6 text-center">My Expected Points</h2>
 

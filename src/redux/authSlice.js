@@ -20,9 +20,7 @@ const authSlice = createSlice({
       const { email, password } = action.payload;
       const users = JSON.parse(localStorage.getItem("users")) || [];
 
-      const user = users.find(
-        (u) => u.email === email && u.password === password
-      );
+      const user = users.find(u => u.email === email && u.password === password);
 
       if (user) {
         state.currentUser = user;
@@ -32,38 +30,28 @@ const authSlice = createSlice({
         state.isAuthenticated = false;
       }
     },
-
-    logout: (state) => {
+    logout: state => {
       state.currentUser = null;
       state.isAuthenticated = false;
     },
-
     startForgetPassword: (state, action) => {
       state.emailToVerify = action.payload.email;
       state.verificationCode = action.payload.code;
       state.isVerified = false;
     },
-
     verifyCode: (state, action) => {
-      if (
-        state.verificationCode &&
-        action.payload.code === state.verificationCode
-      ) {
-        state.isVerified = true;
-      } else {
-        state.isVerified = false;
-      }
+      state.isVerified = action.payload === state.verificationCode;
     },
-
     updatePassword: (state, action) => {
       const { email, newPassword } = action.payload;
       const users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find(u => u.email === email);
 
-      const user = users.find((u) => u.email === email);
       if (user) {
         user.password = newPassword;
         localStorage.setItem("users", JSON.stringify(users));
 
+        // reset
         state.emailToVerify = null;
         state.verificationCode = null;
         state.isVerified = false;
@@ -72,12 +60,5 @@ const authSlice = createSlice({
   },
 });
 
-export const {
-  signup,
-  login,
-  logout,
-  startForgetPassword,
-  verifyCode,
-  updatePassword,
-} = authSlice.actions;
+export const { signup, login, logout, startForgetPassword, verifyCode, updatePassword } = authSlice.actions;
 export default authSlice.reducer;

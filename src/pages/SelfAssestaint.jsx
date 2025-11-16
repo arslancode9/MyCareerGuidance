@@ -38,7 +38,7 @@ const SelfAssessment = () => {
             key={quiz.id}
             className="bg-white rounded-2xl shadow-sm hover:shadow-md transition p-6 flex flex-col justify-between"
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-between gap-4">
               <div className="w-14 h-14 bg-[#D0E5F9] flex items-center justify-center rounded-xl">
                 <img src={img18} alt="quiz icon" className="w-8 h-8" />
               </div>
@@ -46,11 +46,10 @@ const SelfAssessment = () => {
                 <h2 className="font-semibold text-gray-800 text-lg">{quiz.title}</h2>
                 <p className="text-gray-400 text-sm">{quiz.desc}</p>
               </div>
-            </div>
-
-            <button className="mt-6 bg-[#1476B7] text-white text-sm sm:text-base py-2 px-4 rounded-lg self-start hover:bg-[#0f5c91] transition">
+              <button className="mt-6 bg-[#1476B7] text-white text-sm sm:text-base py-2 px-4 rounded-lg self-start hover:bg-[#0f5c91] transition">
               Take Test
             </button>
+            </div>
           </div>
         ))}
       </div>

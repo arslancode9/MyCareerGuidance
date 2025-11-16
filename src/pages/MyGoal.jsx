@@ -85,7 +85,7 @@ Remaining: ${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.mins}m ${timeLeft.sec
   ];
 
   return (
-    <div className=" md:ml-24 mt-16 p-4 sm:p-6 ">
+    <div className=" md:ml-20 mt-16 p-4 sm:p-6 ">
       <div className="">
         {/* Header */}
         <div className="text-center md:text-left lg:w-full">
@@ -98,7 +98,7 @@ Remaining: ${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.mins}m ${timeLeft.sec
         </div>
 
         {/* Form */}
-        <div className="bg-[#F8FAFC] mt-10 p-5 sm:p-8 rounded-2xl shadow-sm border border-gray-200">
+        <div className="bg-[#F8FAFC] mt-5 p-5 sm:p-8">
           <div className="space-y-6">
             {/* Contact */}
             <div>

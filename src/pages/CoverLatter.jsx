@@ -614,7 +614,7 @@ export default function CoverLetter() {
   };
 
   return (
-    <div className="min-h-screen mt-20 p-4 sm:w-full lg:p-8">
+    <div className="min-h-screen mt-20 p-4 sm:w-full  lg:ml-10 lg:p-8 ">
         <div className="mb-8">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
               <div>
