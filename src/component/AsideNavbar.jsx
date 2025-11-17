@@ -44,7 +44,7 @@ const AsideNavbar = () => {
             )}
           </NavLink>
         ))}
-        <img src="Aside.svg" alt="" className="mt-3 w-46 h-46"/>
+        <img src="Aside.svg" alt="" className="mt-3 w-36 h-36"/>
         <Link to='/signup' className="flex items-center justify-center gap-2 bg-[#1476B7] text-white py-2 rounded-md hover:bg-[#0f5e96] transition-all mt-3 cursor-pointer">
               <LogOut size={16} />
               Logout
