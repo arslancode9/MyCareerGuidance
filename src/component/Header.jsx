@@ -27,8 +27,8 @@ const Header = () => {
         </div>
 
         {/* Center Paragraph */}
-        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden md:block">
-          <p className="text-[#1476B7] text-sm md:text-base text-center whitespace-nowrap lg:mr-247">
+        <div className="absolute left-[20.5%] top-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden md:block">
+          <p className="text-[#1476B7] text-sm md:text-base whitespace-nowrap">
             Hello, <span className="font-bold">Bruno Fernandes</span> 👋
           </p>
         </div>
