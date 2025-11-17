@@ -53,7 +53,7 @@ const Overview = () => {
     {
       title: "My CV",
       desc: "Different text formatting",
-      img1: img11,
+      img2: img11,
       bg: "#FFD143",
       link: "/dashboard/coverlatter",
     },
@@ -68,7 +68,7 @@ const Overview = () => {
     {
       title: "My Educational Guidance",
       desc: "Give your Quizzes",
-      img1: img17,
+      img2: img17,
       bg: "#E088EF",
       link: "/dashboard/educationalguidance",
     },
