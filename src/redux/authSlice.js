@@ -58,8 +58,24 @@ const authSlice = createSlice({
         state.isVerified = false;
       }
     },
+    updateEmail: (state, action) => {
+      const { oldEmail, newEmail } = action.payload;
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find(u => u.email === oldEmail);
+
+      if (user) {
+        user.email = newEmail;
+        localStorage.setItem("users", JSON.stringify(users));
+        
+        // Update current user if it's the logged in user
+        if (state.currentUser && state.currentUser.email === oldEmail) {
+          state.currentUser.email = newEmail;
+          localStorage.setItem("currentUser", JSON.stringify(state.currentUser));
+        }
+      }
+    },
   },
 });
 
-export const { signup, login, logout, startForgetPassword, verifyCode, updatePassword } = authSlice.actions;
+export const { signup, login, logout, startForgetPassword, verifyCode, updatePassword, updateEmail } = authSlice.actions;
 export default authSlice.reducer;

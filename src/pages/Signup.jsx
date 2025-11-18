@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 const Signup = () => {
   const [showModel, setShowModel] = useState(false);
   const [fileName, setFileName] = useState("");
+  const [profilePicture, setProfilePicture] = useState(null);
   const fileInputRef = useRef();
   const [ShowPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const Signup = () => {
 
     const newUser = {
       ...formData,
-      profilePicture: fileName || null,
+      profilePicture: profilePicture || null,
     };
     localStorage.setItem("users", JSON.stringify([...existingUsers, newUser]));
 
@@ -291,7 +292,15 @@ const Signup = () => {
                 accept="image/*"
                 onChange={(e) => {
                   const file = e.target.files[0];
-                  setFileName(file ? file.name : "");
+                  if (file) {
+                    setFileName(file.name);
+                    // Convert image to base64
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                      setProfilePicture(reader.result);
+                    };
+                    reader.readAsDataURL(file);
+                  }
                 }}
               />
               <button
@@ -299,8 +308,22 @@ const Signup = () => {
                 onClick={() => fileInputRef.current.click()}
                 className="flex items-center justify-start border pl-15 border-[#D3D3D3] w-full py-4 rounded-xl outline-none focus:outline-none focus:border-[#1476B7] focus:ring-2 focus:ring-[#1476B7]"
               >
-                {fileName || "Add Profile Picture"}
+                {profilePicture ? (
+                  <span className="text-green-600">✓ Profile Picture Added</span>
+                ) : (
+                  fileName || "Add Profile Picture"
+                )}
               </button>
+              {profilePicture && (
+                <div className="mt-2 flex items-center gap-3">
+                  <img 
+                    src={profilePicture} 
+                    alt="Profile Preview" 
+                    className="w-16 h-16 rounded-full object-cover border-2 border-blue-500"
+                  />
+                  <span className="text-sm text-gray-600">Preview</span>
+                </div>
+              )}
             </div>
 
             {/* Signup Button */}

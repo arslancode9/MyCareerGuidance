@@ -1,9 +1,30 @@
 import React, { useState } from "react";
 import { NavLink ,Link } from "react-router-dom";
-import { Menu, X, LogOut } from "lucide-react";
+import { Menu, X, LogOut, Settings } from "lucide-react";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const currentUser = useSelector((state) => state.auth.currentUser);
+  
+  // Get user from localStorage if not in Redux
+  const getUser = () => {
+    if (currentUser) return currentUser;
+    const storedUser = localStorage.getItem("currentUser");
+    if (storedUser) {
+      try {
+        return JSON.parse(storedUser);
+      } catch (e) {
+        return null;
+      }
+    }
+    return null;
+  };
+
+  const user = getUser();
+  const userName = user?.FullName || user?.fullName || "User";
+  const userEmail = user?.email || "";
+  const profilePic = user?.profilePicture || "/profile.jpg";
 
   const navItems = [
     { path: "/dashboard/overview", label: "Overview" },
@@ -29,23 +50,27 @@ const Header = () => {
         {/* Center Paragraph */}
         <div className="absolute left-[20.5%] top-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden md:block">
           <p className="text-[#1476B7] text-sm md:text-base whitespace-nowrap">
-            Hello, <span className="font-bold">Bruno Fernandes</span> 👋
+            Hello, <span className="font-bold">{userName}</span> 👋
           </p>
         </div>
 
         {/* Profile Card */}
         <div className="hidden md:flex items-center gap-4">
-          <div className="bg-[#1476B7] flex items-center gap-3 p-2 px-3 rounded-lg text-white">
+          <Link to="/dashboard/profile" className="bg-[#1476B7] flex items-center gap-3 p-2 px-3 rounded-lg text-white hover:bg-[#0f5e96] transition-colors cursor-pointer">
             <img
-              src="/profile.jpg"
-              alt=""
+              src={profilePic}
+              alt="Profile"
               className="w-10 h-10 rounded-md object-cover border border-white/30"
+              onError={(e) => {
+                e.target.src = "/profile.jpg";
+              }}
             />
             <div className="leading-tight">
-              <h3 className="font-semibold text-sm">Bruno Fernandes</h3>
-              <p className="text-xs opacity-90 truncate">bruno@gmail.com</p>
+              <h3 className="font-semibold text-sm">{userName}</h3>
+              <p className="text-xs opacity-90 truncate">{userEmail || "No email"}</p>
             </div>
-          </div>
+            <Settings size={18} className="ml-2 opacity-80" />
+          </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -82,19 +107,23 @@ const Header = () => {
 
             {/* Mobile Profile Card */}
             <div className="flex items-center gap-3 border-t border-gray-200 pt-4 mt-2">
-               <div className="w-full bg-[#1476B7] flex items-center justify-between gap-3 p-3  rounded-lg text-white">
-            <div className="flex gap-14">
-              <img
-              src="/profile.jpg"
-              alt=""
-              className="w-10 h-10 rounded-md object-cover border border-white/30"
-            />
-            <div className="leading-tight">
-              <h3 className="font-semibold text-sm">Bruno Fernandes</h3>
-              <p className="text-xs opacity-90 truncate">bruno@gmail.com</p>
-            </div>
-            </div>
-          </div>
+              <Link to="/dashboard/profile" className="w-full bg-[#1476B7] flex items-center justify-between gap-3 p-3 rounded-lg text-white hover:bg-[#0f5e96] transition-colors">
+                <div className="flex gap-14">
+                  <img
+                    src={profilePic}
+                    alt="Profile"
+                    className="w-10 h-10 rounded-md object-cover border border-white/30"
+                    onError={(e) => {
+                      e.target.src = "/profile.jpg";
+                    }}
+                  />
+                  <div className="leading-tight">
+                    <h3 className="font-semibold text-sm">{userName}</h3>
+                    <p className="text-xs opacity-90 truncate">{userEmail || "No email"}</p>
+                  </div>
+                </div>
+                <Settings size={18} className="opacity-80" />
+              </Link>
             </div>
           </div>
         </div>

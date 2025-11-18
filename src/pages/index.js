@@ -9,4 +9,5 @@ import MyGoal from "./MyGoal";
 import SelfAssestaint from "./SelfAssestaint";
 import MyStudy from "./MyStudy";
 import EducationalGuidance from "./EducationalGuidance";
-export {Signup,Login,ForgetPassword,EmailVerification,NewPassword,DashBoard,CadCalculator,MyGoal,SelfAssestaint, MyStudy,EducationalGuidance}
+import Profile from "./Profile";
+export {Signup,Login,ForgetPassword,EmailVerification,NewPassword,DashBoard,CadCalculator,MyGoal,SelfAssestaint, MyStudy,EducationalGuidance,Profile}

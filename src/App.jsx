@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { CadCalculator, DashBoard, EducationalGuidance, EmailVerification, ForgetPassword, Login, MyGoal, MyStudy, NewPassword, SelfAssestaint, Signup } from "./pages";
+import { CadCalculator, DashBoard, EducationalGuidance, EmailVerification, ForgetPassword, Login, MyGoal, MyStudy, NewPassword, SelfAssestaint, Signup, Profile } from "./pages";
 import { ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 import Overview from "./pages/Overview";
@@ -43,6 +43,7 @@ const App = () => {
           <Route path="selfassestaint" element={<SelfAssestaint/>}/>
           <Route path="mystudy" element={<MyStudy/>}/>
           <Route path="educationalguidance" element={<EducationalGuidance/>}/>
+          <Route path="profile" element={<Profile/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
