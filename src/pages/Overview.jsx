@@ -12,10 +12,12 @@ import img15 from "/self.svg";
 import img16 from "/self1.svg";
 import img17 from "/education1.svg";
 import img18 from "/quiz.svg";
+import MCQTest from '../component/MCQTest';
 
 const Overview = () => {
   const [showall, setShowAll] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTest, setSelectedTest] = useState(null);
 
   const quizzes = [
     { id: 1, title: "Quiz 01", desc: "Lorem ipsum is a place" },
@@ -149,7 +151,12 @@ const Overview = () => {
                   <h1 className="font-semibold">{quiz.title}</h1>
                   <span className="text-[#BDBDBD]">{quiz.desc}</span>
                 </div>
-                <button className="bg-[#1476B7] h-8 px-3 rounded-md text-white">Take Test</button>
+                <button 
+                  onClick={() => setSelectedTest(`quiz-${quiz.id}`)}
+                  className="bg-[#1476B7] h-8 px-3 rounded-md text-white hover:bg-[#0f5c91] transition"
+                >
+                  Take Test
+                </button>
               </div>
             </div>
           ))}
@@ -163,11 +170,29 @@ const Overview = () => {
           {[1, 2, 3].map((item) => (
             <div key={item} className="border border-gray-200 rounded-md flex items-center justify-between w-full p-4">
               <span>Occupational Interests</span>
-              <button className="bg-[#1476B7] py-2 px-4 rounded-md text-white">Take Test</button>
+              <button 
+                onClick={() => setSelectedTest(`psychometric-${item}`)}
+                className="bg-[#1476B7] py-2 px-4 rounded-md text-white hover:bg-[#0f5c91] transition"
+              >
+                Take Test
+              </button>
             </div>
           ))}
         </div>
       </div>
+
+      {/* MCQ Test Modal */}
+      {selectedTest && (
+        <MCQTest
+          isOpen={!!selectedTest}
+          onClose={() => setSelectedTest(null)}
+          testTitle={
+            selectedTest.startsWith('quiz-')
+              ? quizzes.find(q => `quiz-${q.id}` === selectedTest)?.title || "Quiz Test"
+              : "Psychometric Test"
+          }
+        />
+      )}
     </div>
   );
 };

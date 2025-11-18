@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import img18 from '/quiz.svg'
 import { FaArrowRight } from "react-icons/fa";
+import MCQTest from '../component/MCQTest';
 
 const SelfAssessment = () => {
   const [showAll, setShowAll] = useState(false);
+  const [selectedTest, setSelectedTest] = useState(null);
 
   const quizzes = [
     { id: 1, title: "Psychometric Test 1", desc: "Lorem ipsum is a place" },
@@ -46,13 +48,25 @@ const SelfAssessment = () => {
                 <h2 className="font-semibold text-gray-800 text-lg">{quiz.title}</h2>
                 <p className="text-gray-400 text-sm">{quiz.desc}</p>
               </div>
-              <button className="mt-6 bg-[#1476B7] text-white text-sm sm:text-base py-2 px-4 rounded-lg self-start hover:bg-[#0f5c91] transition">
-              Take Test
-            </button>
+              <button 
+                onClick={() => setSelectedTest(quiz.id)}
+                className="mt-6 bg-[#1476B7] text-white text-sm sm:text-base py-2 px-4 rounded-lg self-start hover:bg-[#0f5c91] transition"
+              >
+                Take Test
+              </button>
             </div>
           </div>
         ))}
       </div>
+
+      {/* MCQ Test Modal */}
+      {selectedTest && (
+        <MCQTest
+          isOpen={!!selectedTest}
+          onClose={() => setSelectedTest(null)}
+          testTitle={quizzes.find(q => q.id === selectedTest)?.title || "Test"}
+        />
+      )}
     </div>
   );
 };

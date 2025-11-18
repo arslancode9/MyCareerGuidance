@@ -76,6 +76,7 @@ Remaining: ${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.mins}m ${timeLeft.sec
     URL.revokeObjectURL(url);
   };
 
+
   const placeholders = [
     'Write down your goal',
     'Set a deadline',
