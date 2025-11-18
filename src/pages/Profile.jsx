@@ -74,7 +74,6 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen mt-20  sm:p-2 lg:p-8 lg:ml-10">
-      <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Profile Settings</h1>
           <p className="text-sm text-gray-500">Manage your account settings and preferences</p>
@@ -169,7 +168,6 @@ export default function Profile() {
             </div>
           </div>
         </div>
-      </div>
 
       {/* Email Update Modal */}
       {showEmailModal && (
