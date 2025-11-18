@@ -73,7 +73,7 @@ export default function Profile() {
   const profilePic = user?.profilePicture || '/profile.jpg';
 
   return (
-    <div className="min-h-screen mt-20 p-4 sm:p-6 lg:p-8 lg:ml-10">
+    <div className="min-h-screen mt-20 p-4 sm:p-2 lg:p-8 lg:ml-10">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Profile Settings</h1>
