@@ -5,10 +5,18 @@ import { useDispatch } from "react-redux";
 import { startForgetPassword } from "../redux/authSlice";
 import { generateVerificationCode } from "../redux/helpers";
 
-// Dummy email sending function
-const sendEmail = (email, code) => {
-  console.log(`Sending verification code ${code} to ${email}`);
-  alert(`(Simulated email) Code ${code} sent to ${email}`);
+// Email notification function
+const sendEmailNotification = (email, code) => {
+  // In a real application, this would call an email service API
+  // For now, we'll simulate sending an email notification
+  console.log(`📧 Email Notification Sent:`);
+  console.log(`To: ${email}`);
+  console.log(`Subject: Password Reset Verification Code`);
+  console.log(`Message: Your password reset verification code is: ${code}`);
+  console.log(`This code will expire in 10 minutes.`);
+  
+  // Show user-friendly notification
+  alert(`✅ Email notification sent to ${email}\n\nYour 4-digit verification code: ${code}\n\n(Note: In production, this code would be sent via email)`);
 };
 
 const ForgetPassword = () => {
@@ -17,12 +25,32 @@ const ForgetPassword = () => {
   const [email, setEmail] = useState("");
 
   const handleRequest = () => {
-    if (!email) return alert("Enter your email");
+    if (!email) {
+      alert("Please enter your email address");
+      return;
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address");
+      return;
+    }
+
+    // Check if user exists
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const userExists = users.find(u => u.email === email);
+    
+    if (!userExists) {
+      alert("No account found with this email address");
+      return;
+    }
 
     const code = generateVerificationCode();
     dispatch(startForgetPassword({ email, code }));
 
-    sendEmail(email, code);
+    // Send email notification
+    sendEmailNotification(email, code);
     navigate("/emailVerification");
   };
 

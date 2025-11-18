@@ -14,12 +14,43 @@ const NewPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
-  const handleUpdate = () => {
-    if (password.length < 8) return alert("Password must be at least 8 characters");
-    if (password !== confirm) return alert("Passwords do not match");
+  // Email notification function for password update
+  const sendPasswordUpdateNotification = (email) => {
+    console.log(`📧 Email Notification Sent:`);
+    console.log(`To: ${email}`);
+    console.log(`Subject: Password Successfully Updated`);
+    console.log(`Message: Your password has been successfully updated. If you did not make this change, please contact support immediately.`);
+  };
 
+  const handleUpdate = () => {
+    if (!password) {
+      alert("Please enter a new password");
+      return;
+    }
+    
+    if (password.length < 8) {
+      alert("Password must be at least 8 characters");
+      return;
+    }
+    
+    if (password !== confirm) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    if (!email) {
+      alert("Email not found. Please start the password reset process again.");
+      navigate("/forgetPassword");
+      return;
+    }
+
+    // Update password
     dispatch(updatePassword({ email, newPassword: password }));
-    alert("Password updated successfully");
+    
+    // Send email notification
+    sendPasswordUpdateNotification(email);
+    
+    alert("✅ Password updated successfully!\n\nAn email notification has been sent to confirm the password change.");
     navigate("/login");
   };
 

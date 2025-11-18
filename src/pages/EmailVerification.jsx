@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Warrper from "../component/Warrper";
 import { useDispatch, useSelector } from "react-redux";
 import { verifyCode } from "../redux/authSlice";
@@ -8,26 +8,56 @@ const EmailVerification = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const email = useSelector(state => state.auth.emailToVerify);
+  const verificationCode = useSelector(state => state.auth.verificationCode);
+  const isVerified = useSelector(state => state.auth.isVerified);
 
   const [codeInputs, setCodeInputs] = useState(["", "", "", ""]);
+  const [error, setError] = useState("");
+  const [verificationAttempted, setVerificationAttempted] = useState(false);
+
+  // Navigate to new password page when verified
+  useEffect(() => {
+    if (isVerified) {
+      navigate("/newPassword");
+    }
+  }, [isVerified, navigate]);
+
+  // Redirect if no email to verify
+  useEffect(() => {
+    if (!email) {
+      navigate("/forgetPassword");
+    }
+  }, [email, navigate]);
+
+  // Show error if verification fails after attempt
+  useEffect(() => {
+    if (verificationAttempted && !isVerified) {
+      setError("Incorrect code. Please try again.");
+      setCodeInputs(["", "", "", ""]);
+      setVerificationAttempted(false);
+    } else if (isVerified) {
+      setError("");
+    }
+  }, [isVerified, verificationAttempted]);
 
   const handleChange = (index, value) => {
     if (!/^\d*$/.test(value)) return; // only numbers
     const newInputs = [...codeInputs];
     newInputs[index] = value;
     setCodeInputs(newInputs);
+    setError(""); // Clear error when user types
   };
 
   const handleVerify = () => {
     const code = codeInputs.join("");
-    dispatch(verifyCode(code));
-
-    const isVerified = store.getState().auth.isVerified;
-    if (isVerified) {
-      navigate("/newPassword");
-    } else {
-      alert("Incorrect code");
+    if (code.length !== 4) {
+      setError("Please enter the complete 4-digit code");
+      return;
     }
+    
+    setVerificationAttempted(true);
+    // Verify the code
+    dispatch(verifyCode(code));
   };
 
   return (
@@ -64,6 +94,10 @@ const EmailVerification = () => {
                   />
                 ))}
               </div>
+
+              {error && (
+                <p className="text-red-500 text-sm mt-2">{error}</p>
+              )}
 
               <button
                 onClick={handleVerify}

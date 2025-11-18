@@ -40,7 +40,8 @@ const authSlice = createSlice({
       state.isVerified = false;
     },
     verifyCode: (state, action) => {
-      state.isVerified = action.payload === state.verificationCode;
+      // Compare as strings to handle both number and string inputs
+      state.isVerified = String(action.payload) === String(state.verificationCode);
     },
     updatePassword: (state, action) => {
       const { email, newPassword } = action.payload;
